@@ -7,7 +7,7 @@ output:
 ---
   
 ## Executive Summary  
-
+Through regression analysis, it is evident that manual transmissions yield a higher MPG than an automotic transmission. Holding all else constant, manual transmission receive approximately 2.94 MPG more than  automatic transmissions.
 
 ## Exploratory Data Analysis  
 
@@ -43,6 +43,11 @@ summary(stepReg)
 
 In this case, wt, qsec, and am are included in the model and all are statistically significant. This model shows that a car with manual transmission will receive 2.94 MPG more than a car with automatic transmission, al else equal.
 
+## Residual Analysis and Diagnostics 
+```{r}
+boxplot(mpg~am,data = mtcars, ylab = "MPG",xlab = "Type (0=automatic, 1=manual)",main = "MPG by Transmission Type")
+
+```  
 
 ```{r}
 par(mfrow = c(2, 2))
