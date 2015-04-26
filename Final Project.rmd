@@ -14,23 +14,34 @@ output:
 ```{r}
 data(mtcars)
 ?mtcars
+```
 
+Viewing the help on mtcars allows us to see the variables and how they are measured, particularly for transmission. If am = 0, the transmission is automoatic, 1 manual.
+
+```{r}
 summary(mtcars$mpg[mtcars$am==0])
 summary(mtcars$mpg[mtcars$am==1])
 ```   
 
+The mean of MPG for an automoatic transmission is 17.15, where the mean MPG for a manual transmission is 24.39. This is a very basic analysis, but shows at a cursory level that manual transmission will provide for a higher MPG.
+
 ## Regression Analysis  
-First, we fit the full model as the following.  
+In order to get more accurate and robust analysis of the effects of transmission type on MPG, we can conduct regression analysis.
+
+The first model includes all variables provided.
 ```{r}
 fullReg<-lm(mpg~.,data=mtcars)
 summary(fullReg)
 ```  
+This shows that a car with manual transmission will receive 2.52 MPG more than an automotic transmission, all else equal. This model is not very useful, though, because none of the values provided are statistically significant.
 
+Therefore, we run a step regression, to narrow the number of variables in hope of making some significatn.
 ```{r}
 stepReg<-step(fullReg,k=log(nrow(mtcars)))
 summary(stepReg)
 ```  
 
+In this case, wt, qsec, and am are included in the model and all are statistically significant. This model shows that a car with manual transmission will receive 2.94 MPG more than a car with automatic transmission, al else equal.
 
 
 ```{r}
